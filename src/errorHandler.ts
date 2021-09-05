@@ -1,8 +1,9 @@
-import { ResponseError } from '@sendgrid/mail'
+import RestException from 'twilio/lib/base/RestException'
 
-export function sendgridErrorHandler(error: ResponseError) {
+export function twilioErrorHandler(error: RestException) {
   return {
-    statusCode: error.code,
-    message: error.response.body,
+    statusCode: error.status,
+    message: error.message,
+    meta: error,
   }
 }
