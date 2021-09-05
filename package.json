@@ -1,0 +1,39 @@
+{
+  "name": "@messageraft/twilio",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Messageraft",
+  "repository": "messageraft/twilio",
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "types": "dist/main/index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "format": "prettier --write \"{src,test}/**/*.ts\"",
+    "build": "run-s clean format build:*",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json",
+    "types-generate": "dts-bundle-generator --umd-module-name 'messageraft' -o dist/messageraft-sendgrid.d.ts src/index.ts",
+    "tsc:watch": "tsc -w"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.4",
+    "dts-bundle-generator": "^5.9.0",
+    "husky": "^7.0.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.2",
+    "pretty-quick": "^3.1.1",
+    "rimraf": "^3.0.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "@messageraft/common": "0.0.1",
+    "twilio": "^3.67.1"
+  }
+}
